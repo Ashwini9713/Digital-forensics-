@@ -1,0 +1,6 @@
+timestamp,workstation,filename,action,user
+2026-03-11 00:18:05,WKSTN-14,svc_update.exe,CREATED,jsmith
+2026-03-11 00:19:12,WKSTN-14,payroll_master.xlsx,MODIFIED,jsmith
+2026-03-11 00:20:47,WKSTN-14,finance_report_q1.pdf,DELETED,jsmith
+2026-03-11 00:21:30,WKSTN-14,backup_schedule.txt,ACCESSED,jsmith
+2026-03-11 07:46:10,WKSTN-14,hr_policies.docx,ACCESSED,jsmith

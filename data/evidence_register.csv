@@ -1,0 +1,5 @@
+evidence_id,source,acquisition_datetime,investigator,storage_location,file_path
+EVD-001,WKSTN-14 Hard Disk Image,2026-03-11 09:15:00,A. Kumar,Locker-3/Shelf-B,./evidence_files/wkstn14_disk.img
+EVD-002,WKSTN-14 RAM Capture,2026-03-11 09:22:00,A. Kumar,Locker-3/Shelf-B,./evidence_files/wkstn14_ram.raw
+EVD-003,Domain Controller Auth Log Export,2026-03-11 10:05:00,S. Rao,Locker-3/Shelf-C,./evidence_files/auth_log_export.csv
+EVD-004,Perimeter Firewall Network Log Export,2026-03-11 10:20:00,S. Rao,Locker-3/Shelf-C,./evidence_files/network_log_export.csv

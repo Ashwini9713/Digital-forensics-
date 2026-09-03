@@ -1,0 +1,222 @@
+
+#### STEP 1: Registering evidence from the case intake sheet ####
+  [OK] Registered EVD-001 — intake SHA-256: 00238f9bd39ebdf16f9e5524bd73fe9cdd653e7e6a93915bf4a9cc9f7e86cff4
+  [OK] Registered EVD-002 — intake SHA-256: 4c37cdfadef2d126749ae82c86ed98bdcd770c33f13abc40066ec619306e1933
+  [OK] Registered EVD-003 — intake SHA-256: 0ad4584a40cb2d55c1edd42e6dc90107f5f86798f0ea688bf537cfd790b4718c
+  [OK] Registered EVD-004 — intake SHA-256: 92107f8b4e8dbcfb25a36b4829a9ce563d67578696034e4358469534c22c528d
+
+#### STEP 2: Replaying recorded custody transfers ####
+  [OK] Custody entry added for EVD-001: Collected by A. Kumar
+  [OK] Custody entry added for EVD-001: Transferred to Storage by A. Kumar
+  [OK] Custody entry added for EVD-001: Checked out for Examination by S. Rao
+  [OK] Custody entry added for EVD-001: Returned to Storage by S. Rao
+  [OK] Custody entry added for EVD-002: Collected by A. Kumar
+  [OK] Custody entry added for EVD-002: Transferred to Storage by A. Kumar
+  [OK] Custody entry added for EVD-003: Collected by S. Rao
+  [OK] Custody entry added for EVD-003: Transferred to Storage by S. Rao
+  [OK] Custody entry added for EVD-004: Collected by S. Rao
+  [OK] Custody entry added for EVD-004: Transferred to Storage by S. Rao
+
+  Chain of Custody — EVD-001
+  ----------------------------------------------------------------------
+  2026-03-11 09:15:00  A. Kumar     Collected                    Imaged from WKSTN-14 using write blocker
+  2026-03-11 09:40:00  A. Kumar     Transferred to Storage       Placed in Locker-3/Shelf-B
+  2026-03-12 14:00:00  S. Rao       Checked out for Examination  Static analysis of disk image
+  2026-03-12 17:30:00  S. Rao       Returned to Storage          Examination complete for the day
+
+#### STEP 3: Verifying integrity of every registered item ####
+
+  Integrity Check — EVD-001
+  Recorded (intake) hash : 00238f9bd39ebdf16f9e5524bd73fe9cdd653e7e6a93915bf4a9cc9f7e86cff4
+  Current  (re-examined) : 00238f9bd39ebdf16f9e5524bd73fe9cdd653e7e6a93915bf4a9cc9f7e86cff4
+  Result: MATCH — evidence integrity verified.
+
+  Integrity Check — EVD-002
+  Recorded (intake) hash : 4c37cdfadef2d126749ae82c86ed98bdcd770c33f13abc40066ec619306e1933
+  Current  (re-examined) : 4c37cdfadef2d126749ae82c86ed98bdcd770c33f13abc40066ec619306e1933
+  Result: MATCH — evidence integrity verified.
+
+  Integrity Check — EVD-003
+  Recorded (intake) hash : 0ad4584a40cb2d55c1edd42e6dc90107f5f86798f0ea688bf537cfd790b4718c
+  Current  (re-examined) : 0ad4584a40cb2d55c1edd42e6dc90107f5f86798f0ea688bf537cfd790b4718c
+  Result: MATCH — evidence integrity verified.
+
+  Integrity Check — EVD-004
+  Recorded (intake) hash : 92107f8b4e8dbcfb25a36b4829a9ce563d67578696034e4358469534c22c528d
+  Current  (re-examined) : 92107f8b4e8dbcfb25a36b4829a9ce563d67578696034e4358469534c22c528d
+  Result: MATCH — evidence integrity verified.
+
+#### STEP 4: Validating baseline vs. current snapshot ####
+
+  Baseline vs. Snapshot Validation
+  ----------------------------------------------------------------------------------------------------
+  Filename                  Status                Baseline Hash (trunc)   Current Hash (trunc)
+  backup_schedule.txt       UNCHANGED             074da2dfc20fe854...     074da2dfc20fe854...
+  finance_report_q1.pdf     MISSING               3de3267d4c0e59e8...     -
+  hr_policies.docx          UNCHANGED             ade5e5b40501fcb8...     ade5e5b40501fcb8...
+  payroll_master.xlsx       MODIFIED              3a5512dbb69f1e4f...     bce359fb8ff9f644...
+  svc_update.exe            NEW                   -                       bd3826c70cb8dd99...
+  system_config.ini         UNCHANGED             62816d25428ba127...     62816d25428ba127...
+
+  3 file(s) require investigation: finance_report_q1.pdf(MISSING), payroll_master.xlsx(MODIFIED), svc_update.exe(NEW)
+
+#### STEP 5: Reconstructing the multi-source timeline ####
+
+  Reconstructed Timeline (all sources, chronological)
+  ------------------------------------------------------------------------------------------
+  2026-03-10 23:58:02  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:11  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:19  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:27  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:35  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:44  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:52  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-11 00:15:30  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-11 00:18:05  [FILE   ]  CREATED — svc_update.exe by jsmith on WKSTN-14
+  2026-03-11 00:19:12  [FILE   ]  MODIFIED — payroll_master.xlsx by jsmith on WKSTN-14
+  2026-03-11 00:20:47  [FILE   ]  DELETED — finance_report_q1.pdf by jsmith on WKSTN-14
+  2026-03-11 00:21:30  [FILE   ]  ACCESSED — backup_schedule.txt by jsmith on WKSTN-14
+  2026-03-11 00:22:05  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (15820000 bytes) from WKSTN-14
+  2026-03-11 00:23:40  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (9400000 bytes) from WKSTN-14
+  2026-03-11 07:45:00  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 10.0.4.22 on WKSTN-14
+  2026-03-11 07:46:10  [FILE   ]  ACCESSED — hr_policies.docx by jsmith on WKSTN-14
+  2026-03-11 08:05:00  [NETWORK]  Outbound TCP to 10.0.1.5:443 (52000 bytes) from WKSTN-14
+
+#### STEP 6: Analyzing the incident ####
+
+  Incident Analysis
+  ------------------------------------------------------------------------------------------
+  Earliest suspicious event: 2026-03-10 23:58:02 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  Subsequent activity (potentially related):
+    -> 2026-03-10 23:58:11  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:19  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:27  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:35  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:44  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:52  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-11 00:15:30  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-11 00:18:05  [FILE   ]  CREATED — svc_update.exe by jsmith on WKSTN-14
+    -> 2026-03-11 00:19:12  [FILE   ]  MODIFIED — payroll_master.xlsx by jsmith on WKSTN-14
+    -> 2026-03-11 00:20:47  [FILE   ]  DELETED — finance_report_q1.pdf by jsmith on WKSTN-14
+    -> 2026-03-11 00:21:30  [FILE   ]  ACCESSED — backup_schedule.txt by jsmith on WKSTN-14
+    -> 2026-03-11 00:22:05  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (15820000 bytes) from WKSTN-14
+    -> 2026-03-11 00:23:40  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (9400000 bytes) from WKSTN-14
+    -> 2026-03-11 07:45:00  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 10.0.4.22 on WKSTN-14
+    -> 2026-03-11 07:46:10  [FILE   ]  ACCESSED — hr_policies.docx by jsmith on WKSTN-14
+    -> 2026-03-11 08:05:00  [NETWORK]  Outbound TCP to 10.0.1.5:443 (52000 bytes) from WKSTN-14
+
+#### STEP 7: Generating the final forensic report ####
+
+  Baseline vs. Snapshot Validation
+  ----------------------------------------------------------------------------------------------------
+  Filename                  Status                Baseline Hash (trunc)   Current Hash (trunc)
+  backup_schedule.txt       UNCHANGED             074da2dfc20fe854...     074da2dfc20fe854...
+  finance_report_q1.pdf     MISSING               3de3267d4c0e59e8...     -
+  hr_policies.docx          UNCHANGED             ade5e5b40501fcb8...     ade5e5b40501fcb8...
+  payroll_master.xlsx       MODIFIED              3a5512dbb69f1e4f...     bce359fb8ff9f644...
+  svc_update.exe            NEW                   -                       bd3826c70cb8dd99...
+  system_config.ini         UNCHANGED             62816d25428ba127...     62816d25428ba127...
+
+  3 file(s) require investigation: finance_report_q1.pdf(MISSING), payroll_master.xlsx(MODIFIED), svc_update.exe(NEW)
+
+  Reconstructed Timeline (all sources, chronological)
+  ------------------------------------------------------------------------------------------
+  2026-03-10 23:58:02  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:11  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:19  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:27  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:35  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:44  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-10 23:58:52  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-11 00:15:30  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  2026-03-11 00:18:05  [FILE   ]  CREATED — svc_update.exe by jsmith on WKSTN-14
+  2026-03-11 00:19:12  [FILE   ]  MODIFIED — payroll_master.xlsx by jsmith on WKSTN-14
+  2026-03-11 00:20:47  [FILE   ]  DELETED — finance_report_q1.pdf by jsmith on WKSTN-14
+  2026-03-11 00:21:30  [FILE   ]  ACCESSED — backup_schedule.txt by jsmith on WKSTN-14
+  2026-03-11 00:22:05  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (15820000 bytes) from WKSTN-14
+  2026-03-11 00:23:40  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (9400000 bytes) from WKSTN-14
+  2026-03-11 07:45:00  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 10.0.4.22 on WKSTN-14
+  2026-03-11 07:46:10  [FILE   ]  ACCESSED — hr_policies.docx by jsmith on WKSTN-14
+  2026-03-11 08:05:00  [NETWORK]  Outbound TCP to 10.0.1.5:443 (52000 bytes) from WKSTN-14
+
+  Incident Analysis
+  ------------------------------------------------------------------------------------------
+  Earliest suspicious event: 2026-03-10 23:58:02 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  Subsequent activity (potentially related):
+    -> 2026-03-10 23:58:11  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:19  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:27  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:35  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:44  [AUTH   ]  FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-10 23:58:52  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-11 00:15:30  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+    -> 2026-03-11 00:18:05  [FILE   ]  CREATED — svc_update.exe by jsmith on WKSTN-14
+    -> 2026-03-11 00:19:12  [FILE   ]  MODIFIED — payroll_master.xlsx by jsmith on WKSTN-14
+    -> 2026-03-11 00:20:47  [FILE   ]  DELETED — finance_report_q1.pdf by jsmith on WKSTN-14
+    -> 2026-03-11 00:21:30  [FILE   ]  ACCESSED — backup_schedule.txt by jsmith on WKSTN-14
+    -> 2026-03-11 00:22:05  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (15820000 bytes) from WKSTN-14
+    -> 2026-03-11 00:23:40  [NETWORK]  Outbound TCP to 198.51.100.77:4444 (9400000 bytes) from WKSTN-14
+    -> 2026-03-11 07:45:00  [AUTH   ]  SUCCESSFUL_LOGIN — user=jsmith from 10.0.4.22 on WKSTN-14
+    -> 2026-03-11 07:46:10  [FILE   ]  ACCESSED — hr_policies.docx by jsmith on WKSTN-14
+    -> 2026-03-11 08:05:00  [NETWORK]  Outbound TCP to 10.0.1.5:443 (52000 bytes) from WKSTN-14
+
+==============================================================================
+                     DIGITAL FORENSIC EXAMINATION REPORT                      
+==============================================================================
+Case ID           : CASE-2026-0311
+Lead Investigator : A. Kumar
+Report Generated  : 2026-09-02 03:33:15
+
+--- 1. Evidence Examined ---
+  EVD-001    WKSTN-14 Hard Disk Image                 hash=00238f9bd39ebdf1...
+  EVD-002    WKSTN-14 RAM Capture                     hash=4c37cdfadef2d126...
+  EVD-003    Domain Controller Auth Log Export        hash=0ad4584a40cb2d55...
+  EVD-004    Perimeter Firewall Network Log Export    hash=92107f8b4e8dbcfb...
+
+--- 2. Chain of Custody Summary ---
+  EVD-001: 4 custody event(s) recorded
+  EVD-002: 2 custody event(s) recorded
+  EVD-003: 2 custody event(s) recorded
+  EVD-004: 2 custody event(s) recorded
+
+--- 3. Integrity Verification History (fact) ---
+  2026-09-02 03:33:15  EVD-001    MATCH
+  2026-09-02 03:33:15  EVD-002    MATCH
+  2026-09-02 03:33:15  EVD-003    MATCH
+  2026-09-02 03:33:15  EVD-004    MATCH
+
+--- 4. Baseline vs. Snapshot Findings (fact) ---
+  finance_report_q1.pdf      MISSING
+  payroll_master.xlsx        MODIFIED
+  svc_update.exe             NEW
+
+--- 5. Timeline-Derived Findings (fact, cited to specific log records) ---
+  F1. Earliest suspicious record: 2026-03-10 23:58:02 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F2. 2026-03-10 23:58:11 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F3. 2026-03-10 23:58:19 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F4. 2026-03-10 23:58:27 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F5. 2026-03-10 23:58:35 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F6. 2026-03-10 23:58:44 [AUTH] FAILED_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F7. 2026-03-10 23:58:52 [AUTH] SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F8. 2026-03-11 00:15:30 [AUTH] SUCCESSFUL_LOGIN — user=jsmith from 203.0.113.44 on WKSTN-14
+  F9. 2026-03-11 00:18:05 [FILE] CREATED — svc_update.exe by jsmith on WKSTN-14
+  F10. 2026-03-11 00:19:12 [FILE] MODIFIED — payroll_master.xlsx by jsmith on WKSTN-14
+  F11. 2026-03-11 00:20:47 [FILE] DELETED — finance_report_q1.pdf by jsmith on WKSTN-14
+  F12. 2026-03-11 00:21:30 [FILE] ACCESSED — backup_schedule.txt by jsmith on WKSTN-14
+  F13. 2026-03-11 00:22:05 [NETWORK] Outbound TCP to 198.51.100.77:4444 (15820000 bytes) from WKSTN-14
+  F14. 2026-03-11 00:23:40 [NETWORK] Outbound TCP to 198.51.100.77:4444 (9400000 bytes) from WKSTN-14
+  F15. 2026-03-11 07:45:00 [AUTH] SUCCESSFUL_LOGIN — user=jsmith from 10.0.4.22 on WKSTN-14
+  F16. 2026-03-11 07:46:10 [FILE] ACCESSED — hr_policies.docx by jsmith on WKSTN-14
+  F17. 2026-03-11 08:05:00 [NETWORK] Outbound TCP to 10.0.1.5:443 (52000 bytes) from WKSTN-14
+
+--- 6. Conclusion (investigator interpretation — see Section 5 for the
+        specific factual records this interpretation is drawn from) ---
+  Based on findings F1-F17 above, the evidence is consistent with
+  an external compromise of the affected workstation originating from the
+  repeated failed-login activity at 2026-03-10 23:58:02, followed by file
+  and network activity in the same session window. This is an interpretation
+  of the correlated records, not a directly observed fact, and should be
+  weighed alongside the baseline validation findings in Section 4.
+
+  All evidence records contain the required mandatory fields.
+==============================================================================

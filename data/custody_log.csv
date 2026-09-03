@@ -1,0 +1,11 @@
+evidence_id,handler,datetime,action,notes
+EVD-001,A. Kumar,2026-03-11 09:15:00,Collected,Imaged from WKSTN-14 using write blocker
+EVD-001,A. Kumar,2026-03-11 09:40:00,Transferred to Storage,Placed in Locker-3/Shelf-B
+EVD-001,S. Rao,2026-03-12 14:00:00,Checked out for Examination,Static analysis of disk image
+EVD-001,S. Rao,2026-03-12 17:30:00,Returned to Storage,Examination complete for the day
+EVD-002,A. Kumar,2026-03-11 09:22:00,Collected,Live RAM capture prior to shutdown
+EVD-002,A. Kumar,2026-03-11 09:45:00,Transferred to Storage,Placed in Locker-3/Shelf-B
+EVD-003,S. Rao,2026-03-11 10:05:00,Collected,Exported from domain controller SIEM
+EVD-003,S. Rao,2026-03-11 10:30:00,Transferred to Storage,Placed in Locker-3/Shelf-C
+EVD-004,S. Rao,2026-03-11 10:20:00,Collected,Exported from perimeter firewall
+EVD-004,S. Rao,2026-03-11 10:35:00,Transferred to Storage,Placed in Locker-3/Shelf-C
